@@ -1,3 +1,3 @@
-message = input()
-lower_msg = str.lower(message)
-print(lower_msg)
+input_msg = input()
+output_msg = input_msg.lower()
+print(output_msg)
