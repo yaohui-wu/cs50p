@@ -7,9 +7,9 @@ def main():
 def determine_pay(greeting):
     pay = "$100"
     greeting = greeting.strip().lower()
-    if greeting[:5] == "hello":
+    if greeting.startswith("hello"):
         pay = "$0"
-    elif greeting[0] == "h":
+    elif greeting.startswith("h"):
         pay = "$20"
     return pay
 
