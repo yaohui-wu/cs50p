@@ -1,12 +1,12 @@
 def main():
     greeting = input("Greeting: ")
+    greeting = greeting.strip().lower()
     pay = determine_pay(greeting)
     print(pay)
 
 
 def determine_pay(greeting):
     pay = "$100"
-    greeting = greeting.strip().lower()
     if greeting.startswith("hello"):
         pay = "$0"
     elif greeting.startswith("h"):
