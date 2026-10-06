@@ -1,5 +1,4 @@
 def main():
-    # TODO
     time = input("What time is it? ")
     hours = convert(time)
     meal = meal_time(hours)
@@ -8,7 +7,6 @@ def main():
 
 
 def convert(time):
-    # TODO
     hours, minutes = time.split(":")
     hours, minutes = float(hours), float(minutes)
     hours += minutes / 60
