@@ -3,9 +3,8 @@ def main():
     time = input("What time is it? ")
     hours = convert(time)
     meal = meal_time(hours)
-    if meal is None:
-        return
-    print(f"{meal} time")
+    if meal is not None:
+        print(f"{meal} time")
 
 
 def convert(time):
