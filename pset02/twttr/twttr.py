@@ -1,9 +1,9 @@
 def main():
     text = input("Input: ")
-    vowels = "aeiou"
+    vowels = "aeiouAEIOU"
     chars = []
     for c in text:
-        if c.lower() not in vowels:
+        if c not in vowels:
             chars.append(c)
     output = "".join(chars)
     print(f"Output: {output}")
