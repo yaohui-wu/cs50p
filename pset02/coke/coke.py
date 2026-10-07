@@ -2,9 +2,10 @@ def main():
     amount = 50
     while amount > 0:
         print(f"Amount Due: {amount}")
-        coin = int(input("Insert Coin: "))
-        if coin == 25 or coin == 10 or coin == 5:
-            amount -= coin
+        coin = input("Insert Coin: ")
+        coins = ("25", "10", "5")
+        if coin in coins:
+            amount -= int(coin)
     change = 0
     if amount < 0:
         change = 0 - amount
