@@ -1,10 +1,15 @@
 def main():
-    # TODO
     percent = get_percent()
+    fuel = round(percent)
+    if fuel < 1:
+        print("E")
+    elif fuel > 99:
+        print("F")
+    else:
+        print(f"{fuel}%")
 
 
 def get_percent():
-    # TODO
     while True:
         try:
             fraction = input("Fraction: ")
@@ -12,7 +17,12 @@ def get_percent():
             if numerator.isdigit() and denominator.isdigit():
                 numerator = int(numerator)
                 denominator = int(denominator)
-                if numerator >= 0 and denominator > 0 and numerator <= denominator:
+                valid_nums = (
+                    numerator >= 0
+                    and denominator > 0
+                    and numerator <= denominator
+                )
+                if valid_nums:
                     percent = numerator / denominator * 100
                     return percent
         except ZeroDivisionError:
