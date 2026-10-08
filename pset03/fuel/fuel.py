@@ -14,8 +14,7 @@ def get_percent():
         try:
             fraction = input("Fraction: ")
             numerator, denominator = fraction.split("/")
-            numerator = int(numerator)
-            denominator = int(denominator)
+            numerator, denominator = int(numerator), int(denominator)
             if numerator < 0 or denominator < 0:
                 raise ValueError
             if numerator > denominator:
@@ -23,10 +22,11 @@ def get_percent():
             percent = numerator / denominator * 100
             return percent
         except (ZeroDivisionError, ValueError):
-            print(
+            message = (
                 "Numerator must be a non-negative integer "
                 "and denominator must be a larger positive integer"
             )
+            print(message)
 
 
 if __name__ == "__main__":
