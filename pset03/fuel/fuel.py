@@ -1,9 +1,9 @@
 def main():
     percent = get_percent()
     fuel = round(percent)
-    if fuel < 1:
+    if fuel <= 1:
         print("E")
-    elif fuel > 99:
+    elif fuel >= 99:
         print("F")
     else:
         print(f"{fuel}%")
@@ -14,21 +14,19 @@ def get_percent():
         try:
             fraction = input("Fraction: ")
             numerator, denominator = fraction.split("/")
-            if numerator.isdigit() and denominator.isdigit():
-                numerator = int(numerator)
-                denominator = int(denominator)
-                valid_nums = (
-                    numerator >= 0
-                    and denominator > 0
-                    and numerator <= denominator
-                )
-                if valid_nums:
-                    percent = numerator / denominator * 100
-                    return percent
-        except ZeroDivisionError:
-            pass
-        except ValueError:
-            pass
+            numerator = int(numerator)
+            denominator = int(denominator)
+            if numerator < 0 or denominator < 0:
+                raise ValueError
+            if numerator > denominator:
+                raise ValueError
+            percent = numerator / denominator * 100
+            return percent
+        except (ZeroDivisionError, ValueError):
+            print(
+                "Numerator must be a non-negative integer "
+                "and denominator must be a larger positive integer"
+            )
 
 
 if __name__ == "__main__":
