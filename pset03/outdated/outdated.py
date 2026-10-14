@@ -14,16 +14,24 @@ def main():
         "December"
     ]
     while True:
+        date = input("Date: ").strip()
         try:
-            date = input("Date: ")
-            month, day, year = date.split("/")
+            if "/" in date:
+                month, day, year = date.split("/")
+            elif ", " in date:
+                date = date.replace(",", " ")
+                month, day, year = date.split()
+                if month in months:
+                    month = months.index(month) + 1
+                else:
+                    raise ValueError
+            else:
+                raise ValueError
+            month, day = int(month), int(day)
+            if 1 <= month <= 12 and 1 <= day <= 31:
+                break
         except ValueError:
-            month_day, year = date.split(", ")
-            month, day = month_day.split()
-            month = months.index(month) + 1
-        month, day = int(month), int(day)
-        if 1 <= month < 12 and 1 <= day <= 31:
-            break
+            continue
     print(f"{year}-{month:02d}-{day:02d}")
 
 
