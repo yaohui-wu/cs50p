@@ -13,7 +13,7 @@ def main():
         font = choice(fonts)
     elif num_arg == 3:
         font_flag = sys.argv[1]
-        if font_flag != "-f" or font_flag != "--font":
+        if font_flag != "-f" and font_flag != "--font":
             sys.exit(error)
         font = sys.argv[2]
         if font not in fonts:
