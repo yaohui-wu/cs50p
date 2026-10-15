@@ -1,11 +1,10 @@
-from emoji import emojize
+import emoji
 
 
 def main():
     text = input("Input: ")
-    emoji = emojize(text, language="alias")
-    output = f"Output: {emoji}"
-    print(output)
+    output_emoji = emoji.emojize(text, language="alias")
+    print(f"Output: {output_emoji}")
 
 
 if __name__ == "__main__":
