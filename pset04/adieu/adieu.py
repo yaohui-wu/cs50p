@@ -1,3 +1,6 @@
+import inflect
+
+
 def main():
     # TODO
     names = []
@@ -7,7 +10,9 @@ def main():
             names.append(name)
         except EOFError:
             break
-    print("Adieu, adieu, to")
+    p = inflect.engine()
+    joined_names = p.join(names)
+    print(f"Adieu, adieu, to {joined_names}")
 
 
 if __name__ == "__main__":
