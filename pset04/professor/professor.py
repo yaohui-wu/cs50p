@@ -1,34 +1,19 @@
 import random
 
+LEVEL_RANGES = {1: (0, 9), 2: (10, 99), 3: (100, 999)}
+NUM_QUESTIONS = 10
+MAX_ATTEMPTS = 3
+
 
 def main():
     level = get_level()
-    nums1 = []
-    nums2 = []
-    for _ in range(10):
-        num1 = generate_integer(level)
-        nums1.append(num1)
-        num2 = generate_integer(level)
-        nums2.append(num2)
     score = 0
-    for i in range(10):
-        num1 = nums1[i]
-        num2 = nums2[i]
-        problem = f"{num1} + {num2} = "
-        answer = num1 + num2
-        tries = 0
-        while tries < 3:
-            try:
-                attempt = int(input(problem))
-                if attempt == answer:
-                    score += 1
-                    break
-            except ValueError:
-                pass
-            print("EEE")
-            tries += 1
-        if tries == 3:
-            print(f"{problem}{answer}")
+    for _ in range(NUM_QUESTIONS):
+        first_num = generate_integer(level)
+        second_num = generate_integer(level)
+        is_correct = ask_question(first_num, second_num)
+        if is_correct:
+            score += 1
     print(f"Score: {score}")
 
 
@@ -38,21 +23,33 @@ def get_level():
             level = int(input("Level: "))
         except ValueError:
             continue
-        if 1 <= level <= 3:
+        if 1 <= level <= MAX_ATTEMPTS:
             return level
 
 
 def generate_integer(level):
-    if level not in (1, 2, 3):
+    if level not in LEVEL_RANGES:
         raise ValueError
-    num = 0
-    if level == 1:
-        num = random.randint(1, 9)
-    elif level == 2:
-        num = random.randint(10, 99)
-    elif level == 3:
-        num = random.randint(100, 999)
+    lower, upper = LEVEL_RANGES[level]
+    num = random.randint(lower, upper)
     return num
+
+
+def ask_question(first_num, second_num):
+    question = f"{first_num} + {second_num} = "
+    correct_answer = first_num + second_num
+    attempts = 0
+    while attempts < MAX_ATTEMPTS:
+        try:
+            user_answer = int(input(question))
+        except ValueError:
+            user_answer = None
+        if user_answer == correct_answer:
+            return True
+        print("EEE")
+        attempts += 1
+    print(f"{question}{correct_answer}")
+    return False
 
 
 if __name__ == "__main__":
