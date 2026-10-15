@@ -2,19 +2,26 @@ import random
 
 
 def main():
-    level = 0
-    while level <= 0:
-        level = int(input("Level: "))
+    level = get_positive_int("Level: ")
     target = random.randint(1, level)
-    print(target)
     guess = 0
     while guess != target:
-        guess = int(input("Guess: "))
+        guess = get_positive_int("Guess: ")
         if guess < target:
             print("Too small!")
         elif guess > target:
             print("Too large!")
     print("Just right!")
+
+
+def get_positive_int(prompt):
+    while True:
+        try:
+            num = int(input(prompt))
+        except ValueError:
+            continue
+        if num > 0:
+            return num
 
 
 if __name__ == "__main__":
