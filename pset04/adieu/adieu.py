@@ -2,7 +2,6 @@ import inflect
 
 
 def main():
-    # TODO
     names = []
     while True:
         try:
@@ -12,6 +11,7 @@ def main():
             break
     p = inflect.engine()
     joined_names = p.join(names)
+    print()
     print(f"Adieu, adieu, to {joined_names}")
 
 
