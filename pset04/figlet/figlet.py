@@ -7,24 +7,26 @@ from pyfiglet import Figlet
 def main():
     figlet = Figlet()
     fonts = figlet.getFonts()
-    error = "Invalid usage"
-    num_arg = len(sys.argv)
-    if num_arg == 1:
-        font = choice(fonts)
-    elif num_arg == 3:
-        font_flag = sys.argv[1]
-        if font_flag != "-f" and font_flag != "--font":
-            sys.exit(error)
-        font = sys.argv[2]
-        if font not in fonts:
-            sys.exit(error)
-    else:
-        sys.exit(error)
+    font = choose_font(fonts, sys.argv[1:])
     figlet.setFont(font=font)
     text = input("Input: ")
     output = figlet.renderText(text)
-    print("Output:")
+    print("Output: ")
     print(output)
+
+
+def choose_font(fonts, args):
+    num_arg = len(args)
+    if num_arg == 0:
+        font = choice(fonts)
+        return font
+    elif num_arg == 2:
+        font_flag = args[0]
+        if font_flag == "-f" or font_flag == "--font":
+            font = args[1]
+            if font in fonts:
+                return font
+    sys.exit("Invalid usage")
 
 
 if __name__ == "__main__":
