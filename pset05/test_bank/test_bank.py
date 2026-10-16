@@ -1,14 +1,23 @@
+from bank import value
+
+
 def main():
-    # TODO
+    test_hello()
+    test_h()
+    test_default()
 
-def test_1():
-    # TODO
 
-def test_2():
-    # TODO
+def test_hello():
+    assert value("HELLO") == "$0"
 
-def test_3():
-    # TODO
+
+def test_h():
+    assert value("hi") == "20"
+
+
+def test_default():
+    assert value("What's up") == "$100"
+
 
 if __name__ == "__main__":
     main()
