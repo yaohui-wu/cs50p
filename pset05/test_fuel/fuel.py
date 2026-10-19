@@ -13,7 +13,12 @@ def convert(fraction):
     return percent
 
 def gauge(percentage):
-    # TODO
+    if percentage <= 1:
+        return "E"
+    elif percentage >= 99:
+        return "F"
+    else:
+        return f"{percentage}%"
 
 
 if __name__ == "__main__":
