@@ -16,11 +16,10 @@ def test_convert():
     assert convert("0/4") == 0
     with pytest.raises(ZeroDivisionError):
         convert("4/0")
-    with pytest.raises(ValueError):
-        convert("three/four")
-        convert("1.5/3")
-        convert("-3/4")
-        convert("5/4")
+    invalid_inputs = ["three/four", "1.5/3", "-3/4", "5/4", "1/-2"]
+    for s in invalid_inputs:
+        with pytest.raises(ValueError):
+            convert(s)
 
 
 def test_gauge():
