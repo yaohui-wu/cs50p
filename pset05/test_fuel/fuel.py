@@ -1,5 +1,17 @@
 def main():
-    # TODO
+    while True:
+        try:
+            fraction = input("Fraction: ")
+            percent = convert(fraction)
+            fuel = gauge(percent)
+            print(fuel)
+        except (ValueError, ZeroDivisionError):
+            print(
+                "Numerator must be a non-negative integer "
+                "and denominator must be a larger positive integer"
+            )
+        else:
+            break
 
 
 def convert(fraction):
@@ -11,6 +23,7 @@ def convert(fraction):
         raise ValueError
     percent = round(numerator / denominator * 100)
     return percent
+
 
 def gauge(percentage):
     if percentage <= 1:
