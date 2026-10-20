@@ -9,10 +9,10 @@ import sys
 
 
 def main():
-    args = sys.argv[1:] # User arguments
+    args = sys.argv[1:]  # User arguments
     filename = get_filename(args)
-    lines = count_lines(filename)
-    print(lines)
+    lines = get_lines(filename)
+
 
 def get_filename(args):
     args_len = len(args)
@@ -25,8 +25,14 @@ def get_filename(args):
         sys.exit("Not a Python file")
     return filename
 
-def count_lines(filename):
-    # TODO
+
+def get_lines(filename):
+    try:
+        with open(filename) as file:
+            lines = file.readlines()
+    except FileNotFoundError:
+        sys.exit("File does not exist")
+    return lines
 
 
 if __name__ == "__main__":
