@@ -1,8 +1,8 @@
 """
 CS50P Problem Set 6: Lines of Code
 
-Count lines of code in a specified Python file,
-excluding comments and blank lines.
+Count the lines of code in a Python file,
+excluding blank lines and comments.
 """
 
 import sys
@@ -12,6 +12,8 @@ def main():
     args = sys.argv[1:]  # User arguments
     filename = get_filename(args)
     lines = get_lines(filename)
+    code_lines = count_code(lines)
+    print(code_lines)
 
 
 def get_filename(args):
@@ -33,6 +35,22 @@ def get_lines(filename):
     except FileNotFoundError:
         sys.exit("File does not exist")
     return lines
+
+
+def count_code(lines):
+    code_lines = 0
+    for line in lines:
+        if is_code(line):
+            code_lines += 1
+    return code_lines
+
+
+def is_code(line):
+    line = line.lstrip()
+    if line == "" or line.startswith("\n") or line.startswith("#"):
+        # Exclude blank lines and comments
+        return False
+    return True
 
 
 if __name__ == "__main__":
