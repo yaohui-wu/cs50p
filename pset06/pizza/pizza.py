@@ -11,12 +11,12 @@ from tabulate import tabulate
 
 
 def main():
-    args = sys.argv[1:]
-    filename = get_filename(args)
+    filename = get_filename(sys.argv[1:])
     try:
         table = read_table(filename)
     except FileNotFoundError:
         sys.exit("File does not exist")
+    print(tabulate(table, headers="firstrow", tablefmt="grid"))
 
 
 def get_filename(args):
