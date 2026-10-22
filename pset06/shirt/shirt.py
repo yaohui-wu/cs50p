@@ -8,6 +8,8 @@ to save the result as output.
 import os
 import sys
 
+import PIL
+import PIL.ImageOps
 from PIL import Image
 
 
@@ -46,7 +48,12 @@ def is_image(extension):
 
 
 def overlay(in_filename, out_filename):
-    in_image = Image.open(in_filename)
+    shirt = Image.open("shirt.png")
+    image = Image.open(in_filename)
+    image = PIL.ImageOps.fit(image, shirt.size)
+    image.paste(shirt, shirt)
+    image.save(out_filename)
+    image.show()
 
 
 if __name__ == "__main__":
