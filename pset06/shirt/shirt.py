@@ -8,9 +8,15 @@ to save the result as output.
 import os
 import sys
 
+from PIL import Image
+
 
 def main():
     in_filename, out_filename = get_filenames(sys.argv[1:])
+    try:
+        overlay(in_filename, out_filename)
+    except FileNotFoundError:
+        sys.exit("Input does not exist")
 
 
 def get_filenames(args):
@@ -23,8 +29,10 @@ def get_filenames(args):
     in_root, in_ext = os.path.splitext(in_filename)
     out_root, out_ext = os.path.splitext(out_filename)
     in_ext, out_ext = in_ext.lower(), out_ext.lower()
-    if not is_image(in_ext) or not is_image(out_ext):
+    if not is_image(in_ext):
         sys.exit("Invalid input")
+    if not is_image(out_ext):
+        sys.exit("Invalid output")
     if in_ext != out_ext:
         sys.exit("Input and output have different extensions")
     in_filename = in_root + in_ext
@@ -35,6 +43,10 @@ def get_filenames(args):
 def is_image(extension):
     extensions = [".jpg", ".jpeg", ".png"]
     return extension in extensions
+
+
+def overlay(in_filename, out_filename):
+    in_image = Image.open(in_filename)
 
 
 if __name__ == "__main__":
