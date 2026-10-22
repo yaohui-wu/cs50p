@@ -2,21 +2,22 @@
 CS Problem Set 6: CS50 P-Shirt
 
 Overlay shirt.png with transparent background on the input image
-to save the result as output.
+to save the result as a new output image.
 """
 
 import os
 import sys
 
-import PIL
-import PIL.ImageOps
-from PIL import Image
+from PIL import Image, ImageOps
+
+EXTENSIONS = {".jpg", ".jpeg", ".png"}
+SHIRT_FILE = "shirt.png"
 
 
 def main():
     in_filename, out_filename = get_filenames(sys.argv[1:])
     try:
-        overlay(in_filename, out_filename)
+        overlay_shirt(in_filename, out_filename)
     except FileNotFoundError:
         sys.exit("Input does not exist")
 
@@ -28,32 +29,23 @@ def get_filenames(args):
     elif args_len > 2:
         sys.exit("Too many command-line arguments")
     in_filename, out_filename = args[0], args[1]
-    in_root, in_ext = os.path.splitext(in_filename)
-    out_root, out_ext = os.path.splitext(out_filename)
-    in_ext, out_ext = in_ext.lower(), out_ext.lower()
-    if not is_image(in_ext):
+    in_ext = os.path.splitext(in_filename)[1].lower()
+    out_ext = os.path.splitext(out_filename)[1].lower()
+    if in_ext not in EXTENSIONS:
         sys.exit("Invalid input")
-    if not is_image(out_ext):
+    if out_ext not in EXTENSIONS:
         sys.exit("Invalid output")
     if in_ext != out_ext:
         sys.exit("Input and output have different extensions")
-    in_filename = in_root + in_ext
-    out_filename = out_root + out_ext
     return in_filename, out_filename
 
 
-def is_image(extension):
-    extensions = [".jpg", ".jpeg", ".png"]
-    return extension in extensions
-
-
-def overlay(in_filename, out_filename):
-    shirt = Image.open("shirt.png")
-    image = Image.open(in_filename)
-    image = PIL.ImageOps.fit(image, shirt.size)
-    image.paste(shirt, shirt)
-    image.save(out_filename)
-    image.show()
+def overlay_shirt(in_filename, out_filename):
+    with Image.open(SHIRT_FILE) as shirt:
+        with Image.open(in_filename) as image:
+            image = ImageOps.fit(image, shirt.size)
+            image.paste(shirt, shirt)
+            image.save(out_filename)
 
 
 if __name__ == "__main__":
