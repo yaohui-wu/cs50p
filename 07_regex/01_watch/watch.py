@@ -14,11 +14,13 @@ def main():
 
 def parse(s):
     # TODO
-    pattern = r"https?://(www.)youtube.com/embed/[A-Za-z0-9]+"
+    # Pattern for standard YouTube URLs
+    long_prefix = r"https?://(www.)?youtube.com/embed"
+    pattern = long_prefix + r"/[A-Za-z0-9]+"
     if match := re.search(pattern, s):
-        print(match.group(0))
-        prefix = r"https://youtu.be/"
-        return prefix
+        short_prefix = r"https://youtu.be"
+        url = re.sub(long_prefix, short_prefix, match.group(0))
+        return url
     return None
 
 
