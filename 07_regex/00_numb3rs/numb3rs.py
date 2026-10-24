@@ -13,12 +13,12 @@ def main():
 
 def validate(ip):
     # Regex to match a single octet for a valid IPv4 address
-    # Match 250-255, 200-249, 100-199, 10-99, and 0-9 without leading zeros
-    octet = r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)"
-    # Valid IPv4 address: #.#.#.#
+    # Match 0-99, 100-199, 200-249, and 250-255 without leading zeros
+    octet = r"(?:[1-9]?\d|1\d{2}|2[0-4]\d|25[0-5])"
+    # Valid IPv4 address format: #.#.#.#
     # Each # (octet) is a number between 0 to 255
-    pattern = rf"^(?:(?:{octet}\.){{3}}{octet})$"
-    if re.search(pattern, ip.strip()):
+    pattern = rf"^(?:{octet}\.){{3}}{octet}$"
+    if re.search(pattern, ip):
         return True
     return False
 
