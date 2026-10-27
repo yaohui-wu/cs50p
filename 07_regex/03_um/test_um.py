@@ -2,21 +2,27 @@ from um import count
 
 
 def main():
-    test_1()
-    test_2()
-    test_3()
+    test_valid()
+    test_invalid()
+    test_mixed()
 
 
-def test_1():
-    # TODO
+def test_valid():
+    assert count("um") == 1
+    assert count("um?") == 1
+    assert count("hello, um, world") == 1
+    assert count("um, hello, um, world") == 2
+    assert count("um...") == 1
 
 
-def test_2():
-    # TODO
+def test_invalid():
+    assert count("yum") == 0
+    assert count("yummy") == 0
 
 
-def test_3():
-    # TODO
+def test_mixed():
+    assert count("Um, thanks for the album.") == 1
+    assert count("Um, thanks, um...") == 2
 
 
 if __name__ == "__main__":
