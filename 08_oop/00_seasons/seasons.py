@@ -9,6 +9,8 @@ import datetime as dt
 import re
 import sys
 
+import inflect
+
 DATE_FORMAT = r"\d{4}-\d{2}-\d{2}"  # YYYY-MM-DD
 SECONDS_IN_MINUTE = 60
 
@@ -16,10 +18,12 @@ SECONDS_IN_MINUTE = 60
 def main():
     """Get birthdate from user input and print their age in mintues."""
     # TODO
-    dob = input("Date of Birth: ")
+    dob = input("Date of Birth: ").strip()
     birthdate = parse_date(dob)
     today = dt.date.today()
     minutes = calculate_minutes(birthdate, today)
+    minutes_words = num_to_words(minutes)
+    print(f"{minutes_words} minutes")
 
 
 def parse_date(date_str):
@@ -38,6 +42,12 @@ def calculate_minutes(start_date, end_date):
     seconds = delta.total_seconds()
     minutes = seconds / SECONDS_IN_MINUTE
     return minutes
+
+
+def num_to_words(num):
+    num = round(num)
+    p = inflect.engine()
+    return p.number_to_words(num)
 
 
 if __name__ == "__main__":
