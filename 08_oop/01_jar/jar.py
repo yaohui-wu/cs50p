@@ -16,8 +16,9 @@ class Jar:
         return "🍪" * self._size
 
     def deposit(self, n: int) -> None:
-        # TODO
-        raise NotImplementedError
+        if n < 1 or n > self.remaining_slots:
+            raise ValueError
+        self._size += n
 
     def withdraw(self, n: int) -> None:
         # TODO
@@ -32,3 +33,7 @@ class Jar:
     def size(self) -> int:
         # TODO
         raise NotImplementedError
+
+    @property
+    def remaining_slots(self) -> int:
+        return self._capacity - self._size
