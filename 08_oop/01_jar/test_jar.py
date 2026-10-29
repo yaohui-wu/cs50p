@@ -9,8 +9,11 @@ def test_init():
 
 
 def test_str():
-    # TODO
-    raise NotImplementedError
+    jar = Jar()
+    jar.deposit(3)
+    assert str(jar) == "🍪🍪🍪"
+    jar.deposit(7)
+    assert str(jar) == "🍪" * 10
 
 
 def test_deposit():
