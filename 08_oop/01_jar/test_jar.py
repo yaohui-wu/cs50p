@@ -13,11 +13,17 @@ def test_init():
 
 
 def test_str():
-    jar = Jar()
-    jar.deposit(3)
-    assert str(jar) == "🍪🍪🍪"
-    jar.deposit(7)
-    assert str(jar) == "🍪" * 10
+    jar1 = Jar()
+    assert str(jar1) == ""
+    jar1.deposit(1)
+    assert str(jar1) == "🍪"
+    jar1.deposit(11)
+    assert str(jar1) == "🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪"
+    jar2 = Jar()
+    jar2.deposit(3)
+    assert str(jar2) == "🍪🍪🍪"
+    jar2.deposit(7)
+    assert str(jar2) == "🍪" * 10
 
 
 def test_deposit():
