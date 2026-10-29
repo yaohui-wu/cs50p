@@ -16,25 +16,20 @@ class Jar:
         return "🍪" * self._size
 
     def deposit(self, n: int) -> None:
-        if n < 1 or n > self.remaining_slots:
-            raise ValueError
+        if n < 1 or n > self._capacity - self._size:
+            raise ValueError("Deposit must be between 1 and remaining slots")
         self._size += n
 
     def withdraw(self, n: int) -> None:
         if n <= 0 or n > self._size:
-            raise ValueError
+            message = "Withdrawal must be between 1 and available size"
+            raise ValueError(message)
         self._size -= n
 
     @property
     def capacity(self) -> int:
-        # TODO
-        raise NotImplementedError
+        return self._capacity
 
     @property
     def size(self) -> int:
-        # TODO
-        raise NotImplementedError
-
-    @property
-    def remaining_slots(self) -> int:
-        return self._capacity - self._size
+        return self._size
