@@ -13,8 +13,7 @@ class Jar:
         self._size = 0
 
     def __str__(self) -> str:
-        # TODO
-        raise NotImplementedError
+        return "🍪" * self._size
 
     def deposit(self, n: int) -> None:
         # TODO
