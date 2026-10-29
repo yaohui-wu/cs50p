@@ -2,7 +2,7 @@ from datetime import date
 
 import pytest
 
-from seasons import calculate_minutes, parse_date
+from seasons import calculate_minutes, num_to_words, parse_date
 
 ERROR_MESSAGE = "Invalid date"
 valid_dates = [
@@ -25,13 +25,13 @@ invalid_dates = [
     "2026-00-01",
     "2026-13-01",
     "2026-01-00",
-    "2026-02-29",
+    "2100-02-29",
+    "2026-3-32",
     "2026-04-31",
 ]
 
 
 def main():
-    # TODO
     test_valid_date()
     test_invalid_format()
     test_invalid_date()
@@ -62,7 +62,6 @@ def test_invalid_date(invalid_date_str):
 
 
 def test_calculate_minutes():
-    # TODO
     date1 = date(2026, 1, 1)
     date2 = date(2025, 1, 1)
     date3 = date(2024, 1, 1)  # Leap year
@@ -72,8 +71,10 @@ def test_calculate_minutes():
 
 
 def test_num_to_words():
-    # TODO
-    pass
+    word1 = "five hundred twenty-five thousand, six hundred"
+    assert num_to_words(525_600) == word1
+    word2 = "one million, fifty-one thousand, two hundred"
+    assert num_to_words(1_052_640) == word2
 
 
 if __name__ == "__main__":
