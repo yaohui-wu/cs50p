@@ -8,6 +8,8 @@ def test_init():
     assert jar.capacity() == 12
     jar = Jar(99)
     assert jar.capacity() == 99
+    with pytest.raises(ValueError):
+        jar = Jar(-1)
 
 
 def test_str():
