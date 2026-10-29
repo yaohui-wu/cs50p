@@ -2,8 +2,10 @@ from jar import Jar
 
 
 def test_init():
-    # TODO
-    raise NotImplementedError
+    jar = Jar()
+    assert jar.capacity() == 12
+    jar = Jar(99)
+    assert jar.capacity() == 99
 
 
 def test_str():
