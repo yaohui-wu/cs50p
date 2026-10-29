@@ -5,8 +5,9 @@ import pytest
 from seasons import calculate_minutes, num_to_words, parse_date
 
 ERROR_MESSAGE = "Invalid date"
+today = date.today()
 valid_dates = [
-    (date.today().isoformat(), date.today()),
+    (today.isoformat(), today),
     ("2026-01-01", date(2026, 1, 1)),
     ("2026-02-28", date(2026, 2, 28)),
     ("2024-06-30", date(2024, 6, 30)),
@@ -26,16 +27,9 @@ invalid_dates = [
     "2026-13-01",
     "2026-01-00",
     "2100-02-29",
-    "2026-3-32",
+    "2026-03-32",
     "2026-04-31",
 ]
-
-
-def main():
-    test_valid_date()
-    test_invalid_format()
-    test_invalid_date()
-    test_calculate_minutes()
 
 
 @pytest.mark.parametrize("valid_date_str, expected_date", valid_dates)
@@ -47,35 +41,27 @@ def test_valid_date(valid_date_str, expected_date):
 def test_invalid_format(invalid_format_str):
     with pytest.raises(SystemExit) as excinfo:  # Exception information
         parse_date(invalid_format_str)
-    exit_code = excinfo.value.code
-    assert exit_code is not None and exit_code != 0
-    assert str(excinfo.value) == ERROR_MESSAGE
+    assert excinfo.value.code == ERROR_MESSAGE
 
 
 @pytest.mark.parametrize("invalid_date_str", invalid_dates)
 def test_invalid_date(invalid_date_str):
     with pytest.raises(SystemExit) as excinfo:
         parse_date(invalid_date_str)
-    exit_code = excinfo.value.code
-    assert exit_code is not None and exit_code != 0
-    assert str(excinfo.value) == ERROR_MESSAGE
+    assert excinfo.value.code == ERROR_MESSAGE
 
 
 def test_calculate_minutes():
-    date1 = date(2026, 1, 1)
-    date2 = date(2025, 1, 1)
-    date3 = date(2024, 1, 1)  # Leap year
-    assert calculate_minutes(date2, date1) == 525_600
-    assert calculate_minutes(date3, date1) == 1_052_640
-    assert calculate_minutes(date1, date1) == 0  # Same day
+    end_date = date(2026, 1, 1)
+    start_date = date(2025, 1, 1)
+    leap_year_date = date(2024, 1, 1)  # Leap year
+    assert calculate_minutes(start_date, end_date) == 525_600
+    assert calculate_minutes(leap_year_date, end_date) == 1_052_640
+    assert calculate_minutes(end_date, end_date) == 0  # Same day
 
 
 def test_num_to_words():
     word1 = "five hundred twenty-five thousand, six hundred"
     assert num_to_words(525_600) == word1
-    word2 = "one million, fifty-one thousand, two hundred"
+    word2 = "one million, fifty-two thousand, six hundred forty"
     assert num_to_words(1_052_640) == word2
-
-
-if __name__ == "__main__":
-    main()
