@@ -1,3 +1,5 @@
+import pytest
+
 from jar import Jar
 
 
@@ -17,8 +19,11 @@ def test_str():
 
 
 def test_deposit():
-    # TODO
-    raise NotImplementedError
+    jar = Jar()
+    jar.deposit(10)
+    assert jar.size() == 10
+    with pytest.raises(ValueError):
+        jar.deposit(10)
 
 
 def test_withdraw():
