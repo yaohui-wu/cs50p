@@ -7,8 +7,10 @@ Implement a cookie jar class to store cookies.
 
 class Jar:
     def __init__(self, capacity: int = 12) -> None:
-        # TODO
-        raise NotImplementedError
+        if capacity < 0:
+            raise ValueError("Capacity must be a non-negative integer")
+        self._capacity = capacity
+        self._size = 0
 
     def __str__(self) -> str:
         # TODO
