@@ -21,8 +21,9 @@ class Jar:
         self._size += n
 
     def withdraw(self, n: int) -> None:
-        # TODO
-        raise NotImplementedError
+        if n <= 0 or n > self._size:
+            raise ValueError
+        self._size -= n
 
     @property
     def capacity(self) -> int:
