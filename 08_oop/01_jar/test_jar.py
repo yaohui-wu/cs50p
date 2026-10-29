@@ -27,5 +27,9 @@ def test_deposit():
 
 
 def test_withdraw():
-    # TODO
-    raise NotImplementedError
+    jar = Jar()
+    jar.deposit(10)
+    jar.withdraw(9)
+    assert jar.size() == 1
+    with pytest.raises(ValueError):
+        jar.withdraw(2)
