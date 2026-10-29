@@ -1,10 +1,14 @@
 from datetime import date
 
+import pytest
+
 from seasons import parse_date
 
 
 def main():
     # TODO
+    test_valid_date()
+    test_invalid_format()
 
 
 def test_valid_date():
@@ -15,7 +19,12 @@ def test_valid_date():
 
 
 def test_invalid_format():
-    # TODO
+    with pytest.raises(ValueError):
+        parse_date("1/1/2026")
+    with pytest.raises(ValueError):
+        parse_date("January 1, 1999")
+    with pytest.raises(ValueError):
+        parse_date("10-31-2026")
 
 
 def test_invalid_date():
