@@ -1,0 +1,33 @@
+"""
+CS50P Problem Set 8: Cookie Jar
+
+Implement a cookie jar class to store cookies.
+"""
+
+
+class Jar:
+    def __init__(self, capacity: int = 12) -> None:
+        # TODO
+        raise NotImplementedError
+
+    def __str__(self) -> str:
+        # TODO
+        raise NotImplementedError
+
+    def deposit(self, n: int) -> None:
+        # TODO
+        raise NotImplementedError
+
+    def withdraw(self, n: int) -> None:
+        # TODO
+        raise NotImplementedError
+
+    @property
+    def capacity(self) -> int:
+        # TODO
+        raise NotImplementedError
+
+    @property
+    def size(self) -> int:
+        # TODO
+        raise NotImplementedError
