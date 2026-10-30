@@ -6,7 +6,7 @@ Generate a customized CS50 shirtificate PDF with the user's name.
 
 import sys
 
-from fpdf import FPDF
+from fpdf import FPDF, Align
 
 
 def main() -> None:
@@ -19,8 +19,23 @@ def main() -> None:
     if not name:  # Reject blank input
         sys.exit("Invalid name")
     name = name.title()
-    pdf = FPDF(orientation="portrait", format="a4")
+    # Initialize an A4 portrait PDF document
+    pdf = FPDF(orientation="portrait", unit="mm", format="a4")
     pdf.add_page()
+    # Set 1 in (25.4 mm) margins
+    pdf.set_margins(left=25.4, top=25.4, right=25.4)
+    # Scale and center the background image in the printable area
+    pdf.image(
+        name="shirtificate.png",
+        x=Align.C,
+        w=pdf.epw,
+        h=pdf.eph,
+        keep_aspect_ratio=True,
+    )
+    # Set the font for the PDF text
+    pdf.set_font(family="Courier", style="", size=12)
+    # Save the PDF document
+    pdf.output("shirtificate.pdf")
     ...
 
 
