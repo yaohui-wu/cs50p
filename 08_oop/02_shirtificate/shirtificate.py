@@ -6,6 +6,8 @@ Generate a customized CS50 shirtificate PDF with the user's name.
 
 import sys
 
+from fpdf import FPDF
+
 
 def main() -> None:
     """
@@ -17,6 +19,8 @@ def main() -> None:
     if not name:  # Reject blank input
         sys.exit("Invalid name")
     name = name.title()
+    pdf = FPDF(orientation="portrait", format="a4")
+    pdf.add_page()
     ...
 
 
