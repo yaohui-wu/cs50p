@@ -6,6 +6,10 @@ Generate a customized CS50 shirtificate PDF with the user's name.
 
 
 def main() -> None:
+    """
+    Prompt for the user's name
+    and save a customized CS50 shirtificate PDF.
+    """
     # TODO
     ...
 
