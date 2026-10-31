@@ -1,7 +1,11 @@
+# Virtual environment
 .venv/
+
+# Python cache files
 __pycache__/
 *.pyc
 
+# Data and media files
 *.csv
 *.jpeg
 *.jpg
@@ -9,6 +13,8 @@ __pycache__/
 *.png
 *.txt
 
+# IDE settings
 .vscode/
 
+# macOS system files
 .DS_Store
