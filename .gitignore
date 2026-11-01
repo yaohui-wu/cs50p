@@ -1,11 +1,11 @@
-# Virtual environment
+# Python virtual environments
 .venv/
 
 # Python cache files
 __pycache__/
 *.pyc
 
-# Data and media files
+# Course data, resources, and test files
 *.csv
 *.jpeg
 *.jpg
@@ -13,8 +13,8 @@ __pycache__/
 *.png
 *.txt
 
-# IDE settings
+# IDE and editor configuration
 .vscode/
 
-# macOS system files
+# Operating system files
 .DS_Store
