@@ -1,11 +1,10 @@
-def main():
-    greeting = input("Greeting: ")
-    greeting = greeting.strip().lower()
+def main() -> None:
+    greeting = input("Greeting: ").strip().lower()
     pay = determine_pay(greeting)
     print(pay)
 
 
-def determine_pay(greeting):
+def determine_pay(greeting: str) -> str:
     pay = "$100"
     if greeting.startswith("hello"):
         pay = "$0"
