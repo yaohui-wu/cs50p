@@ -1,4 +1,4 @@
-def main():
+def main() -> None:
     expression = input("Expression: ")
     num1, operator, num2 = expression.split()
     num1, num2 = float(num1), float(num2)
@@ -6,8 +6,9 @@ def main():
     print(result)
 
 
-def calculate(operator, num1, num2):
+def calculate(operator: str, num1: float, num2: float) -> float | None:
     result = None
+
     if operator == "+":
         result = num1 + num2
     elif operator == "-":
@@ -16,6 +17,7 @@ def calculate(operator, num1, num2):
         result = num1 * num2
     elif operator == "/":
         result = num1 / num2
+
     return result
 
 
