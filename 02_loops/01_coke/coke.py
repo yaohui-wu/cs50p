@@ -1,14 +1,16 @@
-def main():
-    amount = 50
-    while amount > 0:
-        print(f"Amount Due: {amount}")
-        coin = input("Insert Coin: ")
-        coins = ("25", "10", "5")
-        if coin in coins:
-            amount -= int(coin)
-    change = 0
-    if amount < 0:
-        change = 0 - amount
+COINS = {"25", "10", "5"}
+
+
+def main() -> None:
+    amount_due = 50
+
+    while amount_due > 0:
+        print(f"Amount Due: {amount_due}")
+        coin = input("Insert Coin: ").strip()
+        if coin in COINS:
+            amount_due -= int(coin)
+
+    change = abs(amount_due)
     print(f"Change Owed: {change}")
 
 
