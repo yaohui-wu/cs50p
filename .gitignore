@@ -12,9 +12,3 @@ __pycache__/
 *.pdf
 *.png
 *.txt
-
-# IDE and editor configuration
-.vscode/
-
-# Operating system files
-.DS_Store
