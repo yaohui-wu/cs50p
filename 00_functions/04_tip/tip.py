@@ -1,21 +1,21 @@
-def main():
-    dollars_str = input("How much was the meal? ")
-    dollars = dollars_to_float(dollars_str)
-    percent = input("What percentage would you like to tip? ")
-    percent_decimal = percent_to_float(percent)
-    tip = dollars * percent_decimal
+def main() -> None:
+    dollars_text = input("How much was the meal? ")
+    dollars = dollars_to_float(dollars_text)
+    percent_text = input("What percentage would you like to tip? ")
+    percent = percent_to_float(percent_text)
+    tip = dollars * percent
     print(f"Leave ${tip:.2f}")
 
 
-def dollars_to_float(d):
+def dollars_to_float(d: str) -> float:
     dollars = float(d.removeprefix("$"))
     return dollars
 
 
-def percent_to_float(p):
-    percent = p.removesuffix("%")
-    percent_decimal = float(percent) / 100
-    return percent_decimal
+def percent_to_float(p: str) -> float:
+    percent_number = p.removesuffix("%")
+    percent = float(percent_number) / 100
+    return percent
 
 
 if __name__ == "__main__":
