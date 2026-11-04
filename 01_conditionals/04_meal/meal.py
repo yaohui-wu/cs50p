@@ -1,4 +1,4 @@
-def main():
+def main() -> None:
     time = input("What time is it? ")
     hours = convert(time)
     meal = meal_time(hours)
@@ -6,14 +6,14 @@ def main():
         print(f"{meal} time")
 
 
-def convert(time):
+def convert(time: str) -> float:
     hours, minutes = time.split(":")
     hours, minutes = float(hours), float(minutes)
     hours += minutes / 60
     return hours
 
 
-def meal_time(hours):
+def meal_time(hours: float) -> str | None:
     meal = None
     if 7 <= hours <= 8:
         meal = "breakfast"
