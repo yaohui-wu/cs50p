@@ -1,16 +1,18 @@
-def main():
+def main() -> None:
     camel = input("camelCase: ")
     snake = snake_case(camel)
     print(f"snake_case: {snake}")
 
 
-def snake_case(camel):
+def snake_case(camel: str) -> str:
     chars = []
+
     for c in camel:
         if c.isupper():
             chars.append("_")
             c = c.lower()
         chars.append(c)
+
     snake = "".join(chars)
     return snake
 
