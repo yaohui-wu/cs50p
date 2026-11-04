@@ -10,11 +10,11 @@ MONTHS = [
     "September",
     "October",
     "November",
-    "December"
+    "December",
 ]
 
 
-def main():
+def main() -> None:
     year_month_day = None
     while year_month_day is None:
         month_day_year = input("Date: ").strip()
@@ -23,7 +23,7 @@ def main():
     print(year_month_day)
 
 
-def convert_date(date):
+def convert_date(date: str) -> str | None:
     try:
         # Format 1: MM/DD/YYYY
         if "/" in date:
@@ -32,15 +32,18 @@ def convert_date(date):
         # Format 2: Month DD, YYYY
         else:
             month, day, year = date.split()
+
             if day.endswith(","):
                 day = day.replace(",", "")
             else:
                 return None
+
             month = month.capitalize()
             if month in MONTHS:
                 month = MONTHS.index(month) + 1
             else:
                 return None
+
         year, day = int(year), int(day)
         if 1 <= month <= 12 and 1 <= day <= 31:
             year_month_day = f"{year}-{month:02d}-{day:02d}"
