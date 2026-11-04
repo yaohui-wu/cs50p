@@ -1,14 +1,14 @@
-def main():
-    groceries = get_groceries()
+def main() -> None:
+    groceries = add_groceries()
     print_groceries(groceries)
 
 
-def get_groceries():
+def add_groceries() -> dict[str, int]:
     groceries = {}
+
     while True:
         try:
-            item = input()
-            item = item.upper()
+            item = input().upper()
             if item in groceries:
                 groceries[item] += 1
             else:
@@ -18,7 +18,7 @@ def get_groceries():
             return groceries
 
 
-def print_groceries(groceries):
+def print_groceries(groceries) -> None:
     sorted_groceries = sorted(groceries)
     for item in sorted_groceries:
         count = groceries[item]
