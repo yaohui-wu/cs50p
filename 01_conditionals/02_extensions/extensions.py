@@ -1,25 +1,26 @@
-def main():
-    filename = input("File name: ")
-    filename = filename.strip().lower()
-    file_type = get_type(filename)
-    print(file_type)
+def main() -> None:
+    filename = input("File name: ").strip().lower()
+    filetype = get_filetype(filename)
+    print(filetype)
 
 
-def get_type(filename):
-    file_type = "application/octet-stream" # Default.
+def get_filetype(filename: str) -> str:
+    filetype = "application/octet-stream"  # Default
+
     if filename.endswith(".gif"):
-        file_type = "image/gif"
-    elif filename.endswith(".jpg") or filename.endswith(".jpeg"):
-        file_type = "image/jpeg"
+        filetype = "image/gif"
+    elif filename.endswith(".jpeg") or filename.endswith(".jpg"):
+        filetype = "image/jpeg"
     elif filename.endswith(".png"):
-        file_type = "image/png"
+        filetype = "image/png"
     elif filename.endswith(".pdf"):
-        file_type = "application/pdf"
+        filetype = "application/pdf"
     elif filename.endswith(".txt"):
-        file_type = "text/plain"
+        filetype = "text/plain"
     elif filename.endswith(".zip"):
-        file_type = "application/zip"
-    return file_type
+        filetype = "application/zip"
+
+    return filetype
 
 
 if __name__ == "__main__":
