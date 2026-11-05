@@ -1,14 +1,16 @@
 import inflect
 
 
-def main():
+def main() -> None:
     names = []
+
     while True:
         try:
             name = input("Name: ")
             names.append(name)
         except EOFError:
             break
+
     p = inflect.engine()
     joined_names = p.join(names)
     print()
