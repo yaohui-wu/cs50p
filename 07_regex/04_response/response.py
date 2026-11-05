@@ -7,7 +7,7 @@ Checks whether an email address is syntatically valid.
 import validators
 
 
-def main():
+def main() -> None:
     email = input("What's your email address? ")
     if is_valid(email):
         print("Valid")
@@ -15,7 +15,7 @@ def main():
         print("Invalid")
 
 
-def is_valid(email):
+def is_valid(email: str) -> validators.ValidationError | bool:
     return validators.email(email)
 
 
