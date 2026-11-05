@@ -1,13 +1,6 @@
 from plates import is_valid
 
 
-def main():
-    test_start()
-    test_length()
-    test_numbers()
-    test_chars()
-
-
 def test_start():
     assert is_valid("CS50") == True
     assert is_valid("HELLO") == True
@@ -30,7 +23,3 @@ def test_numbers():
 
 def test_chars():
     assert is_valid("PI3.14") == False
-
-
-if __name__ == "__main__":
-    main()
