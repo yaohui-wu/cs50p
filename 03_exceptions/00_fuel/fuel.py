@@ -10,7 +10,7 @@ def main() -> None:
         print(f"{fuel}%")
 
 
-def get_percent() -> float:
+def get_percent() -> int:
     while True:
         try:
             fraction = input("Fraction: ")
@@ -22,7 +22,7 @@ def get_percent() -> float:
             if numerator > denominator:
                 raise ValueError
 
-            percent = numerator / denominator * 100
+            percent = int(round(numerator / denominator * 100))
             return percent
         except (ZeroDivisionError, ValueError):
             message = (
