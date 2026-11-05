@@ -1,0 +1,5 @@
+inflect==7.6.0
+jaraco-functools==4.6.0
+more-itertools==11.2.1
+typeguard==4.6.0
+typing-extensions==4.16.0
