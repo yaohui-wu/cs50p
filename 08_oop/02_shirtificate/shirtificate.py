@@ -23,9 +23,11 @@ class PDF(FPDF):
         # Set 1-inch margins
         self.set_margins(left=25.4, top=25.4, right=25.4)
         self.add_page()
+
         # Configure typography
         self.set_font(family="Courier", style="B", size=40)
         self.cell(text="CS50 Shirtificate", center=True)  # Title
+
         # Center and scale the shirt image
         self.image(
             x=Align.C,
@@ -34,6 +36,7 @@ class PDF(FPDF):
             name="shirtificate.png",
             keep_aspect_ratio=True,
         )
+
         # Position the text on top of the shirt
         self.set_xy(self.epw / 2, self.eph / 2)
         self.set_font(style="B", size=20)
@@ -49,8 +52,10 @@ def main() -> None:
     and save a personalized CS50 shirtificate PDF.
     """
     name = input("Name: ").strip().title()
+
     if not name:  # Reject blank input
         sys.exit("Invalid name")
+
     pdf = PDF(name)
     # Save the PDF file
     pdf.output("shirtificate.pdf")
