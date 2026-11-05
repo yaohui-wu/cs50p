@@ -4,7 +4,7 @@ import sys
 from pyfiglet import Figlet
 
 
-def main():
+def main() -> None:
     figlet = Figlet()
     fonts = figlet.getFonts()
     f = choose_font(fonts, sys.argv[1:])
@@ -15,17 +15,20 @@ def main():
     print(output)
 
 
-def choose_font(fonts, args):
+def choose_font(fonts: list[str], args: list[str]) -> str:
     num_arg = len(args)
+
     if num_arg == 0:
         font = random.choice(fonts)
         return font
     elif num_arg == 2:
         font_flag = args[0]
+
         if font_flag == "-f" or font_flag == "--font":
             font = args[1]
             if font in fonts:
                 return font
+
     sys.exit("Invalid usage")
 
 
