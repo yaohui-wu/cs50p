@@ -8,16 +8,19 @@ and convert it to a shortened YouTube URL.
 import re
 
 
-def main():
+def main() -> None:
     print(parse(input("HTML: ")))
 
 
-def parse(s):
+def parse(s: str) -> str | None:
+    s = s.strip()
+
     # Match a YouTube embed URL
     url = r"https?://(?:www\.)?youtube\.com/embed"
     # Match an iframe containing a YouTube embed URL
-    pattern = rf'^<iframe\s.*?src="{url}/([A-Za-z0-9]+)".*?></iframe>$'
-    if match := re.search(pattern, s):
+    iframe = rf'^<iframe\s.*?src="{url}/([A-Za-z0-9]+)".*?></iframe>$'
+
+    if match := re.search(iframe, s):
         # Extract the video ID in the YouTube embed URL
         video_id = match.group(1)
         # Return a shortened YouTube URL for the video
