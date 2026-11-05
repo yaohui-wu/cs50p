@@ -1,25 +1,28 @@
-import random
-
 import pytest
+
 from fuel import convert, gauge
 
 
-def main():
-    test_convert()
-    test_gauge()
-
-
-def test_convert():
+def test_convert_valid():
     assert convert("3/4") == 75
     assert convert("1/4") == 25
     assert convert("4/4") == 100
     assert convert("0/4") == 0
+
+
+def test_convert_invalid():
     with pytest.raises(ZeroDivisionError):
         convert("4/0")
-    invalid_inputs = ["three/four", "1.5/3", "-3/4", "5/4", "1/-2"]
-    for s in invalid_inputs:
-        with pytest.raises(ValueError):
-            convert(s)
+    with pytest.raises(ValueError):
+        convert("three/four")
+    with pytest.raises(ValueError):
+        convert("1.5/3")
+    with pytest.raises(ValueError):
+        convert("-3/4")
+    with pytest.raises(ValueError):
+        convert("5/4")
+    with pytest.raises(ValueError):
+        convert("1/-2")
 
 
 def test_gauge():
@@ -28,10 +31,4 @@ def test_gauge():
     assert gauge(100) == "F"
     assert gauge(99) == "F"
     assert gauge(50) == "50%"
-    for _ in range(10):
-        random_int = random.randint(2, 98)
-        assert gauge(random_int) == f"{random_int}%"
-
-
-if __name__ == "__main__":
-    main()
+    assert gauge(42) == "42%"

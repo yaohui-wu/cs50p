@@ -1,7 +1,7 @@
-def main():
+def main() -> None:
     while True:
         try:
-            fraction = input("Fraction: ")
+            fraction = input("Fraction: ").strip()
             percent = convert(fraction)
             fuel = gauge(percent)
             print(fuel)
@@ -14,18 +14,20 @@ def main():
             break
 
 
-def convert(fraction):
+def convert(fraction: str) -> int:
     numerator, denominator = fraction.split("/")
     numerator, denominator = int(numerator), int(denominator)
+
     if denominator == 0:
         raise ZeroDivisionError
     if numerator < 0 or denominator < 0 or numerator > denominator:
         raise ValueError
-    percent = round(numerator / denominator * 100)
+
+    percent = int(round(numerator / denominator * 100))
     return percent
 
 
-def gauge(percentage):
+def gauge(percentage: int) -> str:
     if percentage <= 1:
         return "E"
     elif percentage >= 99:
