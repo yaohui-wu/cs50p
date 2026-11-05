@@ -7,15 +7,15 @@ as a standalone word, case-insensitively.
 
 import re
 
-PATTERN = r"\bum\b"
+UM = r"\bum\b"  # standalone word "um"
 
 
-def main():
+def main() -> None:
     print(count(input("Text: ")))
 
 
-def count(s):
-    if matches := re.findall(PATTERN, s.strip(), re.IGNORECASE):
+def count(s: str) -> int:
+    if matches := re.findall(UM, s.strip(), re.IGNORECASE):
         return len(matches)
     return 0
 
