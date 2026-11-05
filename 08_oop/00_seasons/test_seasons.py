@@ -5,6 +5,7 @@ import pytest
 from seasons import calculate_minutes, num_to_words, parse_date
 
 ERROR_MESSAGE = "Invalid date"
+
 today = date.today()
 valid_dates = [
     (today.isoformat(), today),
@@ -14,6 +15,7 @@ valid_dates = [
     ("2024-12-31", date(2024, 12, 31)),
     ("2024-02-29", date(2024, 2, 29)),
 ]
+
 invalid_formats = [
     "1/1/2026",
     "January 1, 1999",
@@ -22,6 +24,7 @@ invalid_formats = [
     "2046-Jan-01",
     "",
 ]
+
 invalid_dates = [
     "2026-00-01",
     "2026-13-01",

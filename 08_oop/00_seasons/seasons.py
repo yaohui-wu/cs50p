@@ -20,9 +20,11 @@ def main() -> None:
     """Get birthdate from user input and print their age in minutes."""
     birthdate_str = input("Date of Birth: ").strip()
     birthdate = parse_date(birthdate_str)
+
     today = date.today()
     if today < birthdate:  # Reject future birthdate
         sys.exit("Invalid Date")
+
     minutes = calculate_minutes(birthdate, today)
     minutes_words = num_to_words(minutes)
     print(f"{minutes_words.capitalize()} minutes")
@@ -48,7 +50,8 @@ def calculate_minutes(start_date: date, end_date: date) -> int:
 def num_to_words(num: int) -> str:
     """Convert an integer to English words, omitting "and"."""
     engine = inflect.engine()
-    return engine.number_to_words(num, andword="")
+    words = engine.number_to_words(str(num), andword="")
+    return str(words)  # Normalize return type
 
 
 if __name__ == "__main__":
