@@ -17,12 +17,13 @@ def main() -> None:
 
 
 def get_filename(args: list[str]) -> str:
-    args_len = len(args)
-    if args_len < 1:
+    if len(args) < 1:
         sys.exit("Too few command-line arguments")
-    elif args_len > 1:
+    elif len(args) > 1:
         sys.exit("Too many command-line arguments")
+
     filename = args[0]
+
     if not filename.endswith(".py"):
         sys.exit("Not a Python file")
     return filename
